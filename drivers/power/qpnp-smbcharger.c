@@ -316,7 +316,7 @@ struct smbchg_chip {
 	struct delayed_work					charging_info_work;
 #endif
 #ifdef CONFIG_LGE_PM_BATT_MANAGER
-    struct power_supply *bm_psy;
+	struct power_supply *bm_psy;
 #endif
 	int					dc_psy_type;
 	const char			*bms_psy_name;
@@ -4399,7 +4399,7 @@ static void smbchg_rerun_apsd(struct smbchg_chip *chip)
 		return;
 	}
 
-    /* allow 5 to 9V chargers
+	/* allow 5 to 9V chargers
 	 * 0xF1: USBIN_CHGR_CFG
 	 * 0x07: ADAPTER_ALLOWANCE_MASK
 	 * 0x02: USBIN_ADAPTER_5V_9V_CONT */
@@ -4656,10 +4656,10 @@ skip_current_for_non_sdp:
 
 #ifdef CONFIG_LGE_PM_LGE_POWER_CORE
 static char *lge_cable_type_str[] = {
-       "NOT INIT", "MHL 1K", "U_28P7K",
-       "28P7K", "56K", "100K",  "130K",
-       "180K", "200K", "220K",  "270K",
-       "330K", "620K", "910K",  "OPEN"
+	"NOT INIT", "MHL 1K", "U_28P7K",
+	"28P7K", "56K", "100K",  "130K",
+	"180K", "200K", "220K",  "270K",
+	"330K", "620K", "910K",  "OPEN"
 };
 
 static void smbchg_external_lge_power_changed(struct power_supply *psy)
