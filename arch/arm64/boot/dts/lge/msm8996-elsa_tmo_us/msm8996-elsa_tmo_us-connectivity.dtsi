@@ -12,18 +12,18 @@
 
 /*[H1_BT_BRINGUP_S]*/
 &blsp1_uart2 {
-                interrupt-names = "core_irq", "bam_irq";
-                interrupts = <0 1>;
-                interrupt-map = <0 &intc 0 0 108 0
-                                 1 &intc 0 0 238 0>;
-                /delete-property/ qcom,inject-rx-on-wakeup;
-                /delete-property/ qcom,rx-char-to-inject;
-                qcom,msm-obs;
+	interrupt-names = "core_irq", "bam_irq";
+	interrupts = <0 1>;
+	interrupt-map = <0 &intc 0 0 108 0
+			1 &intc 0 0 238 0>;
+	/delete-property/ qcom,inject-rx-on-wakeup;
+	/delete-property/ qcom,rx-char-to-inject;
+	qcom,msm-obs;
 };
 /*[H1_BT_BRINGUP_E]*/
 
 / {
-        /*[H1_BT_BRINGUP_S]*/
+	/*[H1_BT_BRINGUP_S]*/
 	bt_bluetooth_pm {
 		compatible = "lge,bluetooth_pm";
 		gpio-bt-reset = <&pm8994_gpios 19 0>;
@@ -35,8 +35,8 @@
 
 		pinctrl-names = "bt_default";
 		pinctrl-0 = <&bt_default>;
-     };
-        /*[H1_BT_BRINGUP_E]*/
+	};
+	/*[H1_BT_BRINGUP_E]*/
 
 	/* BCMDHD for Wi-Fi */
 	bcmdhd_wifi {
@@ -45,17 +45,17 @@
 		wlan-hostwake-gpio = <&tlmm 73 0>;
 	};
 
-    bt_sleep{
-              compatible = "bcm,bluesleep";
-              bt_host_wake = <&tlmm 24 0>;
-              bt_ext_wake = <&tlmm 92 0>;
-              status = "ok";
-    };
+	bt_sleep{
+		compatible = "bcm,bluesleep";
+		bt_host_wake = <&tlmm 24 0>;
+		bt_ext_wake = <&tlmm 92 0>;
+		status = "ok";
+	};
 
-    bt_bcm4358{
-            compatible = "bcm,bcm4358";
-            bcm,bt-reset-gpio = <&pm8994_gpios 19 0>;
-            bcm,bt-vdd-io-supply = <&pm8994_s4>;
-            bcm,bt-vdd-io-voltage-level = <1800000 1800000>;
-    };
+	bt_bcm4358{
+		compatible = "bcm,bcm4358";
+		bcm,bt-reset-gpio = <&pm8994_gpios 19 0>;
+		bcm,bt-vdd-io-supply = <&pm8994_s4>;
+		bcm,bt-vdd-io-voltage-level = <1800000 1800000>;
+	};
 };
