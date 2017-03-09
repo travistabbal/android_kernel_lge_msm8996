@@ -17,7 +17,7 @@
 #include "msm8996-elsa_tmo_us-sound.dtsi"
 #include "msm8996-elsa_tmo_us-connectivity.dtsi"
 #include "msm8996-elsa_tmo_us-nfc.dtsi"
-#include "msm8996-elsa_tmo_us-hdmi.dtsi"
+#include "../msm8996-elsa-hdmi.dtsi"
 #include "msm8996-elsa_tmo_us-fingerprint.dtsi"
 #include "msm8996-elsa_tmo_us-usb.dtsi"
 
