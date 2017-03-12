@@ -402,6 +402,14 @@ config LGE_QSDL_SUPPORT
 	  QSDL is a feature which notify infomation for quality statistics
 	  data logging of device.
 
+config LGE_DISABLE_SECOND_SCREEN
+	bool "Disable the secondary screen on elsa devices"
+	depends on MACH_MSM8996_ELSA
+	help
+	  Disables the second screen for devices with userspace which lacks
+	  support.  Notably this includes all versions of LineageOS at this
+	  time.
+
 endmenu
 
 menu "LGE QFPROM Values"
