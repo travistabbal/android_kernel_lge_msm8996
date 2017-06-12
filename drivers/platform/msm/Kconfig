@@ -325,4 +325,34 @@ config LGE_QPNP_HAPTIC_OV_RB
 	  LGE implements Over Drive and Reverse Brake voltage on Direct mode.
 
 	default n
+
+config DIRTYSANTA_FIXUP
+	boolean "Do fixups for problems caused by DirtySanta bootloader"
+	help
+	  Workaround problems cause by the unlocked LGE V20 "DirtySanta"
+	  bootloader.
+	default n
+
+choice
+	prompt "DirtySanta Target Device"
+	depends on DIRTYSANTA_FIXUP
+	help
+	  This option selects what device to override the "DirtySanta" modem
+	  settings with.  Select the appropriate device and the device's
+	  modem should function correctly.
+
+config DIRTYSANTA_FIXUP_DEVICE_H990DS
+	bool "H990DS"
+	help
+	  Choose this for the H990DS dual-SIM international version of the
+	  LGE V20.
+
+config DIRTYSANTA_FIXUP_DEVICE_H990N
+	bool "H990N"
+	help
+	  Choose this for the H990N single-SIM international version of the
+	  LGE V20.
+
+endchoice
+
 endmenu
