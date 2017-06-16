@@ -353,6 +353,12 @@ config DIRTYSANTA_FIXUP_DEVICE_H990N
 	  Choose this for the H990N single-SIM international version of the
 	  LGE V20.
 
+config DIRTYSANTA_FIXUP_DEVICE_H990
+	bool "H990"
+	help
+	  Choose this for the H990 single-SIM international version of the
+	  LGE V20.
+
 endchoice
 
 endmenu

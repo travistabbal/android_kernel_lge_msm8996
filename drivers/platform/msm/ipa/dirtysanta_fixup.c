@@ -42,6 +42,9 @@ static const char sim_num=2;
 #elif defined(CONFIG_DIRTYSANTA_FIXUP_DEVICE_H990N)
 static const char dev_name[]="LG-H990N";
 static const char sim_num=1;
+#elif defined(CONFIG_DIRTYSANTA_FIXUP_DEVICE_H990)
+static const char dev_name[]="LG-H990";
+static const char sim_num=1;
 #else
 #error "Dirty Santa fixup enabled, but device unknown"
 #endif
