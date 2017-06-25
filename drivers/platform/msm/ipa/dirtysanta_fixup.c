@@ -36,18 +36,8 @@ struct lge_smem_vendor0 {
 
 static char last[32]="";
 
-#if defined(CONFIG_DIRTYSANTA_FIXUP_DEVICE_H990DS)
-static const char dev_name[]="LG-H990ds";
-static const char sim_num=2;
-#elif defined(CONFIG_DIRTYSANTA_FIXUP_DEVICE_H990N)
-static const char dev_name[]="LG-H990N";
-static const char sim_num=1;
-#elif defined(CONFIG_DIRTYSANTA_FIXUP_DEVICE_H990)
-static const char dev_name[]="LG-H990";
-static const char sim_num=1;
-#else
-#error "Dirty Santa fixup enabled, but device unknown"
-#endif
+static const char dev_name[]=CONFIG_DIRTYSANTA_FIXUP_DEVICENAME;
+static const char sim_num=CONFIG_DIRTYSANTA_FIXUP_SIMCOUNT;
 
 
 void dirtysanta_fixup_msm_modem(const char *caller)
