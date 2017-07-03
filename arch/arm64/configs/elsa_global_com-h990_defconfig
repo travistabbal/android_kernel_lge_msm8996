@@ -823,3 +823,6 @@ CONFIG_V4L2_FM_DRIVER=m
 ##
 #CONFIG_MSM_POWER=y
 ##
+#
+# full exfat support will be desired
+CONFIG_EXFAT_FS=m
