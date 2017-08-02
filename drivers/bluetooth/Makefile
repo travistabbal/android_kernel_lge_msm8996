@@ -40,4 +40,12 @@ hci_uart-$(CONFIG_BT_HCIUART_3WIRE)	+= hci_h5.o
 hci_uart-$(CONFIG_BT_HCIUART_IBS)	+= hci_ibs.o
 hci_uart-objs				:= $(hci_uart-y)
 
+#[H1_BT_BRINGUP_S]
+obj-$(CONFIG_LGE_BLUETOOTH_PM)  += bluetooth-pm.o
+#[H1_BT_BRINGUP_E]
+
+#BT_S : [CONBT-2025] LGC_BT_COMMON_IMP_MOS_V4L2
+obj-y += broadcom/
+#BT_E : [CONBT-2025] LGC_BT_COMMON_IMP_MOS_V4L2
+
 ccflags-y += -D__CHECK_ENDIAN__
