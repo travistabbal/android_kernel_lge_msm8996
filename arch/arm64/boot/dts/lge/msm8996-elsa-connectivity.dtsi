@@ -11,7 +11,46 @@
  * GNU General Public License for more details.
  */
 
+
+#if (defined(CONFIG_LINE_DISCIPLINE_DRIVER) || defined(CONFIG_LINE_DISCIPLINE_DRIVER_MODULE)) && (defined(CONFIG_BT_BCM43XX) || defined(CONFIG_BT_BCM43XX_MODULE))
+#error "CONFIG_LINE_DISCIPLINE_DRIVER and CONFIG_BT_BCM43XX conflict, cannot continue!"
+#elif !defined(CONFIG_LINE_DISCIPLINE_DRIVER) && !defined(CONFIG_LINE_DISCIPLINE_DRIVER_MODULE) && !defined(CONFIG_BT_BCM43XX) && !defined(CONFIG_BT_BCM43XX_MODULE)
+#warning "No Bluetooth implementation selected, are you aure about that?"
+#endif
+
+
+#if defined(CONFIG_LINE_DISCIPLINE_DRIVER) || defined(CONFIG_LINE_DISCIPLINE_DRIVER_MODULE)
+/*[H1_BT_BRINGUP_S]*/
+&blsp1_uart2 {
+	interrupt-names = "core_irq", "bam_irq";
+	interrupts = <0 1>;
+	interrupt-map = <0 &intc 0 0 108 0
+			1 &intc 0 0 238 0>;
+	/delete-property/ qcom,inject-rx-on-wakeup;
+	/delete-property/ qcom,rx-char-to-inject;
+	qcom,msm-obs;
+};
+/*[H1_BT_BRINGUP_E]*/
+#endif
+
 / {
+#if defined(CONFIG_LINE_DISCIPLINE_DRIVER) || defined(CONFIG_LINE_DISCIPLINE_DRIVER_MODULE)
+	/*[H1_BT_BRINGUP_S]*/
+	bt_bluetooth_pm {
+		compatible = "lge,bluetooth_pm";
+		gpio-bt-reset = <&pm8994_gpios 19 0>;
+		gpio-bt-host-wake = <&tlmm 24 0>;
+		gpio-bt-ext-wake = <&tlmm 92 0>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <24 0>;
+		interrupt-names = "host_wake_interrupt";
+
+		pinctrl-names = "bt_default";
+		pinctrl-0 = <&bt_default>;
+	};
+	/*[H1_BT_BRINGUP_E]*/
+#endif
+
 	/* BCMDHD for Wi-Fi */
 	bcmdhd_wifi {
 		compatible = "lge,bcmdhd_wlan";
@@ -19,6 +58,7 @@
 		wlan-hostwake-gpio = <&tlmm 73 0>;
 	};
 
+#if defined(CONFIG_BT_BCM43XX) || defined(CONFIG_BT_BCM43XX_MODULE)
 	bluesleep {
 		compatible = "qcom,bluesleep";
 		bt_host_wake = <&tlmm 24 0x00>; /* BT_HOST_WAKE */
@@ -33,50 +73,50 @@
 
 	bcm43xx {
 		compatible = "bcm,bcm43xx";
-                bcm,reg-on-gpio = <&pm8994_gpios 19 0x00>; /* BT_REG_ON */
+		bcm,reg-on-gpio = <&pm8994_gpios 19 0x00>; /* BT_REG_ON */
 	};
 };
 
 &tlmm {
-    /* GPIO_92 : BT_DEV_WAKE */
-    msm_gpio_92: msm_gpio_92 {
-        mux {
-            pins = "gpio92";
-            function = "gpio";
-        };
+	/* GPIO_92 : BT_DEV_WAKE */
+	msm_gpio_92: msm_gpio_92 {
+		mux {
+			pins = "gpio92";
+			function = "gpio";
+		};
 
-        config {
-            pins = "gpio92";
-            drive-strength = <2>;
-            bias-disable;
-            output-low;
-        };
-    };
+		config {
+			pins = "gpio92";
+			drive-strength = <2>;
+			bias-disable;
+			output-low;
+		};
+	};
 
-    /* GPIO_24 : BT_HOST_WAKE */
-    msm_gpio_24_active: msm_gpio_24_active {
-        mux {
-            pins = "gpio24";
-            function = "gpio";
-        };
+	/* GPIO_24 : BT_HOST_WAKE */
+	msm_gpio_24_active: msm_gpio_24_active {
+		mux {
+			pins = "gpio24";
+			function = "gpio";
+		};
 
-        config {
-            pins = "gpio24";
-            drive-strength = <2>;
-            bias-disable;
-        };
-    };
-    msm_gpio_24_suspend: msm_gpio_24_suspend {
-        mux {
-            pins = "gpio24";
-            function = "gpio";
-        };
+		config {
+			pins = "gpio24";
+			drive-strength = <2>;
+			bias-disable;
+		};
+	};
+	msm_gpio_24_suspend: msm_gpio_24_suspend {
+		mux {
+			pins = "gpio24";
+			function = "gpio";
+		};
 
-        config {
-            pins = "gpio24";
-            drive-strength = <2>;
-            bias-pull-down;
-        };
-    };
-
+		config {
+			pins = "gpio24";
+			drive-strength = <2>;
+			bias-pull-down;
+		};
+	};
+#endif
 };
