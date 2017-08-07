@@ -825,3 +825,6 @@ CONFIG_LGE_DISABLE_SECOND_SCREEN=n
 ##
 #CONFIG_MSM_POWER=y
 ##
+#
+# full exfat support will be desired
+CONFIG_EXFAT_FS=m
