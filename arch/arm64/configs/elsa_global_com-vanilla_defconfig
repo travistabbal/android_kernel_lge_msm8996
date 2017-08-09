@@ -808,7 +808,8 @@ CONFIG_LINE_DISCIPLINE_DRIVER=m
 CONFIG_V4L2_FM_DRIVER=m
 #CONFIG_MSM_BT_POWER=m
 #
-# where does the mysterious core_ctl.ko module come from?
+# this replaces CONFIG_MSM_CORE_CTL_HELPER=y
+CONFIG_SCHED_CORE_CTL=y
 #
 #CONFIG_SCSI_UFS_TEST=m
 #
