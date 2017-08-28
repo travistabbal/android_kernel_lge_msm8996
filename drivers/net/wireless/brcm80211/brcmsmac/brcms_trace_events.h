@@ -246,7 +246,7 @@ TRACE_EVENT(brcms_dbg,
 #ifdef CONFIG_BRCM_TRACING
 
 #undef TRACE_INCLUDE_PATH
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH ../../drivers/wireless/brcm80211/brcmsmac
 #undef TRACE_INCLUDE_FILE
 #define TRACE_INCLUDE_FILE brcms_trace_events
 

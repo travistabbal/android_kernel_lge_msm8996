@@ -394,6 +394,6 @@ DEFINE_EVENT(tsens, tsens_threshold_clear,
 #endif
 #undef TRACE_INCLUDE_PATH
 #undef TRACE_INCLUDE_FILE
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH ../trace
 #define TRACE_INCLUDE_FILE trace_thermal
 #include <trace/define_trace.h>
