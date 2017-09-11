@@ -55,7 +55,8 @@ static bool is_factory_cable(void)
 		return true;
 	}
 #else
-	cable_info = NO_INIT_CABLE;
+	/* NOOP **
+	cable_info = NO_INIT_CABLE; */
 #endif
 	return false;
 }
